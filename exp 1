@@ -9,6 +9,7 @@ plt.xlabel("Year")
 plt.ylabel("Number of Job Postings")
 plt.show()
 
+
 B)roles=['Data Analyst','Data Engineer','Data Scientist','ML Engineer','Business Analyst']
 counts=[300,500,450,200,150]
 plt.bar(roles,counts)
