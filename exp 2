@@ -1,0 +1,39 @@
+import pandas as pd
+
+data = {
+    'SNo': [1, 2, 3, 4, 5],
+    'Date': ['2026-08-01', '2026-08-02', '2026-08-03', '2026-08-04', '2026-08-05'],
+    'PName': ['Laptop', 'Mouse', 'Keyboard', 'Monitor', 'Printer'],
+    'Sales': [50000, 1500, 3000, 15000, 12000],
+    'Qty': [2, 10, 5, 3, 2],
+    'Region': ['Chennai', 'Bangalore', 'Hyderabad', 'Mumbai', 'Delhi']
+}
+df = pd.DataFrame(data)
+print(df)
+  SNo        Date     PName  Sales  Qty     Region
+0    1  2026-08-01    Laptop  50000    2    Chennai
+1    2  2026-08-02     Mouse   1500   10  Bangalore
+2    3  2026-08-03  Keyboard   3000    5  Hyderabad
+3    4  2026-08-04   Monitor  15000    3     Mumbai
+4    5  2026-08-05   Printer  12000    2      Delhi
+
+
+print("\nFirst two rows:")
+print(df.head(2))
+First two rows:
+   SNo        Date   PName  Sales  Qty     Region
+0    1  2026-08-01  Laptop  50000    2    Chennai
+1    2  2026-08-02   Mouse   1500   10  Bangalore
+
+
+print("\nMissing values:")
+print(df.isnull().sum())
+Missing values:
+SNo       0
+Date      0
+PName     0
+Sales     0
+Qty       0
+Region    0
+dtype: int64
+
