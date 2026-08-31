@@ -26,6 +26,7 @@ print("\n unstructured data:\n",unstructured_data)
 semistructured_data={'ID':1,'Name':'Alice','Attributes':{'Height':165,'Weight':68}}
 print("\n semi-structured data:\n",semistructured_data)
 
+
 D)from cryptography.fernet import Fernet 
 key=Fernet.generate_key()
 f=Fernet(key)
