@@ -1,0 +1,307 @@
+1a)
+import pandas as pd
+import matplotlib.pyplot as plt
+data = {'Year': list(range(2010, 2021)),
+'Job Postings': [150, 300, 450, 600, 800, 1200, 1600, 2100, 2700, 3400, 4200]}
+df = pd.DataFrame(data)
+plt.plot(df['Year'], df['Job Postings'], marker='o')
+plt.title('Trend of Data Science Job Postings')
+plt.xlabel('Year')
+plt.ylabel('Number of Job Postings')
+plt.show()
+
+1b)roles = ['Data Analyst', 'Data Engineer', 'Data Scientist', 'ML Engineer',
+'Business Analyst']
+counts = [300, 500, 450, 200, 150]
+plt.bar(roles, counts)
+plt.title('Distribution of Data Science Roles')
+plt.xlabel('Role')
+plt.ylabel('Count')
+plt.show()
+
+1c)# Structured data example
+structured_data = pd.DataFrame({
+'ID': [1, 2, 3],
+'Name': ['Alice', 'Bob', 'Charlie'],
+'Age': [25, 30, 35]
+})
+print("Structured Data:\n", structured_data)
+# Unstructured data example
+unstructured_data = "This is an example of unstructured data. It can be a piece of text, an image,
+or a video file."
+print("\nUnstructured Data:\n", unstructured_data)
+# Semi-structured data example (JSON)
+semi_structured_data = {'ID': 1, 'Name': 'Alice', 'Attributes': {'Height': 165, 'Weight': 68}}
+print("\nSemi-structured Data:\n", semi_structured_data)
+
+1d)# Generate key and encrypt data
+from cryptography.fernet import Fernet
+key = Fernet.generate_key()
+f = Fernet(key)
+token = f.encrypt(b"Rajalakshmi Engineering College")
+token
+b'...'
+f.decrypt(token)
+b'Rajalakshmi Engineering College'
+key = Fernet.generate_key()
+cipher_suite = Fernet(key)
+plain_text = b"Rajalakshmi Engineering College."
+cipher_text = cipher_suite.encrypt(plain_text)
+# Decrypt data
+decrypted_text = cipher_suite.decrypt(cipher_text)
+print("Original Data:", plain_text)
+print("Encrypted Data:", cipher_text)
+print("Decrypted Data:", decrypted_text)
+
+2)import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+# Load the data into a pandas DataFrame
+file_path='C:\sales_data.csv'
+df = pd.read_csv(file_path)
+# Display the first few rows of the DataFrame
+print(df.head())
+# Check for missing values
+print(df.isnull().sum())
+# Fill or drop missing values if necessary
+df['Sales'].fillna(df['Sales'].mean(), inplace=True)
+df.dropna(subset=['Product', 'Quantity', 'Region'], inplace=True)
+# Summary statistics
+print(df.describe())
+# Group by product and calculate the total sales and quantity
+product_summary = df.groupby('Product').agg({
+'Sales': 'sum',
+'Quantity': 'sum'
+}).reset_index()
+print(product_summary)
+# Bar plot of total sales by product
+plt.figure(figsize=(10, 6))
+plt.bar(product_summary['Product'], product_summary['Sales'])
+plt.xlabel('Product')
+plt.ylabel('Total Sales')
+plt.title('Total Sales by Product')
+plt.show()
+# Line plot of sales over time
+df['Date'] = pd.to_datetime(df['Date'])
+sales_over_time = df.groupby('Date').agg({'Sales': 'sum'}).reset_index()
+plt.figure(figsize=(10, 6))
+plt.plot(sales_over_time['Date'], sales_over_time['Sales'])
+plt.xlabel('Date')
+plt.ylabel('Total Sales')
+plt.title('Sales Over Time')
+plt.show()
+# Pivot table to analyze sales by region and product
+pivot_table = df.pivot_table(values='Sales', index='Region', columns='Product',
+aggfunc=np.sum, fill_value=0)
+print(pivot_table)
+# Correlation matrix
+correlation_matrix = df.corr()
+print(correlation_matrix)
+# Heatmap of the correlation matrix
+import seaborn as sns
+plt.figure(figsize=(8, 6))
+sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm')
+plt.title('Correlation Matrix')
+plt.show()
+
+3a)import matplotlib.pyplot as cricket
+Overs=list(range(5,51,5))
+Indian_Score=[30,55,90,129,165,200,239,270,310,350]
+Srilankan_Score=[25,70,90,120,140,170,195,220,255,279]
+cricket.plot(Overs,Indian_Score)
+cricket.plot(Overs,Srilankan_Score)
+cricket.show()
+cricket.title("INDIA Vs SRILANKA")
+cricket.xlabel("Overs")
+cricket.ylabel("Score")
+cricket.legend()
+cricket.plot(Overs,Indian_Score,color="green",label="INDIA")
+cricket.plot(Overs,Srilankan_Score,color="red",label="SRILANKA")
+cricket.legend(loc="center right")
+
+3b)import matplotlib.pyplot as hscmark
+import numpy as np
+Names = ['SHREE', 'DEV', 'KEERTHI', 'PRIYA', 'SHAN', 'KUMARAN']
+xaxis = np.arange(len(Names))
+Percentage_hsc = [96, 91, 94, 75, 45, 81]
+hscmark.bar(Names, Percentage_hsc)
+hscmark.xticks(xaxis, Names, rotation=45)
+hscmark.xlabel("Names of Pupil")
+hscmark.ylabel("Percentage")
+hscmark.title("Comparison of HSC Percentage", fontsize=20, color="green")
+hscmark.show()
+
+3c)import matplotlib.pyplot as election
+# Election data
+labels = ['CANDIDATE 1', 'CANDIDATE 2', 'CANDIDATE 3', 'CANDIDATE 4']
+Votes = [315, 130, 245, 210]
+colors = ['green', 'yellow', 'red', 'orange']
+explode = (0.2, 0, 0, 0)
+# Plotting the pie chart
+election.pie(Votes, labels=labels, colors=colors, explode=explode, autopct='%0.2f%%')
+election.title('Election Results')
+election.show()
+
+4)import nltk
+from nltk.tokenize import word_tokenize
+from nltk.corpus import gutenberg
+# Download the gutenberg corpus if not already installed
+nltk.download('gutenberg')
+nltk.download('punkt') # Ensure the punkt tokenizer models are also downloaded
+# Load the text from the gutenberg corpus
+sample = gutenberg.raw("austen-emma.txt") # Change to an existing text from the corpus
+# Tokenize the sample text
+token = word_tokenize(sample)
+# Create a list of the first 50 tokens
+wlist = []
+for i in range(50):
+wlist.append(token[i])
+# Calculate the frequency of each word in the list
+wordfreq = [wlist.count(w) for w in wlist]
+# Print the word-frequency pairs
+print("Pairs\n" + str(list(zip(wlist, wordfreq))))
+
+5)import pandas as pd
+# Load the dataset
+diabetes_df = pd.read_csv(“diabetes.csv”)
+# Display the first few rows
+print(diabetes_df.head())
+import pandas as pd
+db=pd.read_csv("/content/drive/MyDrive/PIMA Indian Dataset")
+print(db.head())
+
+6)import pandas as pd
+import matplotlib.pyplot as plt
+from statsmodels.tsa.seasonal import seasonal_decompose
+# Load dataset
+data = pd.read_csv('website_traffic.csv', parse_dates=['Date'], index_col='Date')
+# Time Series Decomposition
+decomposition = seasonal_decompose(data['Page_Views'], model='additive')
+decomposition.plot()
+plt.show()
+# Moving Average
+data['Page_Views_MA'] = data['Page_Views'].rolling(window=30).mean()
+data[['Page_Views', 'Page_Views_MA']].plot()
+plt.title('Page Views with Moving Average')
+plt.show()
+# Anomaly Detection
+data['Page_Views_Z'] = (data['Page_Views'] - data['Page_Views'].mean()) /
+data['Page_Views'].std()
+anomalies = data[data['Page_Views_Z'].abs() > 3]
+plt.plot(data.index, data['Page_Views'], label='Page Views')
+plt.scatter(anomalies.index, anomalies['Page_Views'], color='red', label='Anomalies')
+plt.legend()
+plt.show()
+
+7)import numpy as np
+import matplotlib.pyplot as plt
+# Step 1: Generate a population (e.g., normal distribution)
+population_mean = 50
+population_std = 10
+population_size = 100000
+population = np.random.normal(population_mean, population_std, population_size)
+# Step 2: Random sampling
+sample_sizes = [30, 50, 100] # different sample sizes to consider
+num_samples = 1000 # number of samples for each sample size
+sample_means = {}
+for size in sample_sizes:
+sample_means[size] = []
+for _ in range(num_samples):
+sample = np.random.choice(population, size=size, replace=False)
+sample_means[size].append(np.mean(sample))
+# Step 3: Plotting sampling distributions
+plt.figure(figsize=(12, 8))
+for i, size in enumerate(sample_sizes):
+plt.subplot(len(sample_sizes), 1, i+1)
+plt.hist(sample_means[size], bins=30, alpha=0.7, label=f'Sample Size {size}')
+plt.axvline(np.mean(population), color='red', linestyle='dashed', linewidth=1.5, label='Population
+Mean')
+plt.title(f'Sampling Distribution (Sample Size {size})')
+plt.xlabel('Sample Mean')
+plt.ylabel('Frequency')
+plt.legend()
+plt.tight_layout()
+plt.show()
+
+8)import numpy as np
+import scipy.stats as stats
+# Define the sample data (hypothetical weights in grams)
+sample_data = np.array([152, 148, 151, 149, 147, 153, 150, 148, 152, 149,151, 150, 149, 152, 151,
+148, 150, 152, 149, 150,148, 153, 151, 150, 149, 152, 148, 151, 150, 153])
+# Population mean under the null hypothesis
+population_mean = 150
+# Calculate sample statistics
+sample_mean = np.mean(sample_data)
+sample_std = np.std(sample_data, ddof=1) # Using sample standard deviation
+# Number of observations
+n = len(sample_data)
+# Calculate the Z-statistic
+z_statistic = (sample_mean - population_mean) / (sample_std / np.sqrt(n))
+# Calculate the p-value
+p_value = 2 * (1 - stats.norm.cdf(np.abs(z_statistic))) # Two-tailed test
+# Print results
+print(f"Sample Mean: {sample_mean:.2f}")
+print(f"Z-Statistic: {z_statistic:.4f}")
+print(f"P-Value: {p_value:.4f}")
+# Decision based on the significance level
+alpha = 0.05
+if p_value < alpha:
+print("Reject the null hypothesis: The average weight is significantly different from 150 grams.")
+else:
+print("Fail to reject the null hypothesis: There is no significant difference in average weight from
+150 grams.")
+
+9)import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+%matplotlib inline
+data=pd.read_csv('/content/Iris_Dataset.csv')
+data.describe()
+data.value_counts('variety')
+sns.countplot(x='variety',data=data,)
+plt.show()
+dummies=pd.get_dummies(data.variety)
+FinalDataset=pd.concat([pd.get_dummies(data.variety),data.iloc[:,[0,1,2,3]]],axis=1)
+FinalDataset.head()
+sns.scatterplot(x='SepalLengthCm',y='SepalWidthCm',hue='variety',data=data,)
+
+10)import numpy as np
+array=np.random.randint(1,100,9)
+array
+array([83, 25, 19, 47, 62, 15, 96, 39, 51])
+np.sqrt(array)
+array([9.11043358, 5. , 4.35889894, 6.8556546 , 7.87400787,
+3.87298335, 9.79795897, 6.244998 , 7.14142843])
+array.ndim
+1
+new_array=array.reshape(3,3)
+new_array
+array([[83, 25, 19],
+[47, 62, 15],
+[96, 39, 51]])
+new_array.ndim
+2
+new_array.ravel()
+array([83, 25, 19, 47, 62, 15, 96, 39, 51])
+newm=new_array.reshape(3,3)
+newm
+array([[83, 25, 19],
+[47, 62, 15],
+[96, 39, 51]])
+newm[2,1:3]
+array([39, 51])
+newm[1:2,1:3]
+array([[62, 15]])
+new_array[0:3,0:0]
+array([], shape=(3, 0), dtype=int64)
+new_array[0:2,0:1]
+array([[83],
+[47]])
+new_array[0:3,0:1]
+array([[83],
+[47],
+[96]])
+new_array[1:3]
+array([[47, 62, 15],
+[96, 39, 51]])
